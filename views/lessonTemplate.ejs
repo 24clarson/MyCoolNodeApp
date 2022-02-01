@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/x-icon" href="red-blue-loop.ico">
+    <title>Code Mirror</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="codemirror.css">
+    <script src="codemirror.js"></script>
+    <script src="htmlmixed.js"></script>
+    <script src="css.js"></script>
+    <script src="javascript.js"></script>
+    <script src="xml.js"></script>
+    <script src="placeholder.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="title">
+            <a href="index.html"><h1>HTML and CSS Editor</h1></a>
+        </div>
+        <div class="dropdown">
+            <button onclick="dropDown()" class="dropbtn">Labs</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="header.html">h tag</a>
+                <a href="paragraph.html">p tag</a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="project">
+            <div class="instructions">
+                <h2><%= labName%></h2>
+                <br>
+                <p><%= instructions%></p>
+            </div>
+            <hr>
+            <div class="feedback">
+                Objectives for this lab:
+                <ul>
+                    <% for (let instruction of criteria) { %>
+                    <li id=<%= instruction[0]%>><%= instruction[2]%></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div class="code-area">
+            <textarea id="htmlCode" placeholder="HTML Code..."><%= htmlStarterCode%></textarea>
+            <hr>
+            <textarea id="cssCode" placeholder="CSS Code..."><%= cssStarterCode%></textarea>
+        </div>
+        <div class="preview-area">
+            <iframe id="preview-window"></iframe>
+        </div>
+
+        <script>
+            var htmlEditor = CodeMirror.fromTextArea(document.getElementById("htmlCode"), {
+                mode: "htmlmixed"
+            })
+            var cssEditor = CodeMirror.fromTextArea(document.getElementById("cssCode"), {
+                mode: "css"
+            })
+            function showPreview() {
+                var htmlCode = htmlEditor.getValue();
+                var cssCode = "<style>" + cssEditor.getValue() + "</style>";
+                var frame = document.getElementById("preview-window").contentWindow.document;
+                frame.open();
+                frame.write(htmlCode+cssCode);
+                frame.close();
+            }
+
+            function checkAnswer(requirements) {
+                var htmlString = htmlEditor.getValue();
+                var cssString = cssEditor.getValue();
+                for (let i = 0; i < requirements.length; i++) {
+                    grade = document.getElementById(requirements[i][0]);
+                    if (new RegExp(requirements[i][1]).test(htmlString)) {
+                        grade.style.color = 'green';
+                    }
+                    else {
+                        grade.style.color = 'red';
+                    }
+                }
+            }
+            var goals = JSON.parse('<%- JSON.stringify(criteria) %>')
+            //  console.log(criteria) 
+            // let goals = [['grade1', /<h2>.*<\/h2>/], ['grade2', /<h3>.*<\/h3>/], ['grade3', /<h6>.*<\/h6>/]];
+            // alert(goals)
+            alert(goals)
+            // const goals = []
+            // for (let i = 0; i < criteria.length; i++) {
+            //     goals.push(criteria[i])
+            // }
+            // alert(goals)
+            showPreview();
+            checkAnswer(goals);
+            htmlEditor.on("change",function(){showPreview()});
+            cssEditor.on("change",function(){showPreview()});
+            htmlEditor.on("change",function(){checkAnswer(goals)});
+            cssEditor.on("change",function(){checkAnswer(goals)});
+
+        </script>
+    </div>
+</body>
+</html>
