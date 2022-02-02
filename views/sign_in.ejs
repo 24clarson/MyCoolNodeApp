@@ -21,6 +21,7 @@
         </div>
         <center id="message">Signed in as </center>
         <center id="my-signin2"></center>
+        <a href="#" onclick="signOut();">Sign out</a>
         <script>
           function onSuccess(googleUser) {
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -38,6 +39,12 @@
               'theme': 'dark',
               'onsuccess': onSuccess,
               'onfailure': onFailure
+            });
+          }
+          function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            console.log('User signed out.');
             });
           }
         </script>
