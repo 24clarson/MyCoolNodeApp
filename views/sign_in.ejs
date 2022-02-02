@@ -4,6 +4,7 @@
         <meta name="google-signin-client_id" content="994575881691-l2ecbd7cq62vi2vi0vhpenb1bit6q1nr.apps.googleusercontent.com">
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
+        <link rel="icon" type="image/x-icon" href="red-blue-loop.ico">
       </head>
       <body>
         <div class="banner">
@@ -18,12 +19,12 @@
                 </div>
             </div>
         </div>
-        <h1 id="message"></h1>
+        <center id="message">Signed in as </center>
         <center id="my-signin2"></center>
         <script>
           function onSuccess(googleUser) {
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-            document.getElementById("message").innerHTML = googleUser.getBasicProfile().getName()
+            document.getElementById("message").innerHTML += googleUser.getBasicProfile().getName()
           }
           function onFailure(error) {
             console.log(error);
