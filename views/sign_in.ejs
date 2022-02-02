@@ -1,9 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+        <meta name="google-signin-client_id" content="994575881691-l2ecbd7cq62vi2vi0vhpenb1bit6q1nr.apps.googleusercontent.com">
+        <link rel="stylesheet" href="style.css">
       </head>
       <body>
+        <div class="banner">
+            <div class="title">
+                <a href="index.html"><h1>HTML and CSS Editor</h1></a>
+            </div>
+            <div class="dropdown">
+                <button onclick="dropDown()" class="dropbtn">Labs</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="header.html">h tag</a>
+                    <a href="paragraph.html">p tag</a>
+                </div>
+            </div>
+        </div>
         <center id="my-signin2"></center>
         <script>
           function onSuccess(googleUser) {
