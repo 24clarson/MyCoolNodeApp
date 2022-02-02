@@ -17,10 +17,12 @@
                 </div>
             </div>
         </div>
+        <h1 id="message"></h1>
         <center id="my-signin2"></center>
         <script>
           function onSuccess(googleUser) {
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+            document.getElementById("message").innerHTML = googleUser.getBasicProfile().getName()
           }
           function onFailure(error) {
             console.log(error);
@@ -37,7 +39,6 @@
             });
           }
         </script>
-      
         <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
       </body>
 </html>
