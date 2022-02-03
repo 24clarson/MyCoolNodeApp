@@ -11,17 +11,22 @@
             <div class="title">
                 <a href="index.html"><h1>HTML and CSS Editor</h1></a>
             </div>
-            <div class="dropdown">
-                <button onclick="dropDown()" class="dropbtn">Labs</button>
-                <div id="myDropdown" class="dropdown-content">
+            <div class="right2">
+                <button onclick="dropDownLabs()" class="dropbtnlabs">Labs</button>
+                <div id="dropDownLabs" class="dropdown-contentlabs">
                     <a href="header.html">h tag</a>
                     <a href="paragraph.html">p tag</a>
                 </div>
             </div>
+            <div class="right">
+              <button onclick="dropDownInfo()" class="dropbtninfo">Info</button>
+              <div id="dropDownInfo" class="dropdown-contentinfo">
+                  <a href="#" onclick="signOut();">Sign out</a>
+                  <div id="message">Sign in </div>
+              </div>
+          </div>
         </div>
-        <center id="message">Sign in </center>
-        <center id="my-signin2"></center>
-        <a href="#" onclick="signOut();">Sign out</a>
+        <div class = "center" id="my-signin2"></div>
         <script>
           function onSuccess(googleUser) {
             console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
