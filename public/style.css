@@ -67,7 +67,7 @@
     height: 100%;
     border: none;
   }
-  .dropbtn {
+  .dropbtnlabs {
     background-color: white;
     border-radius: 6px;
     color: black;
@@ -76,14 +76,30 @@
     font-size: 24px;
     border: 1px solid darkslategrey;
   }
-  .dropbtn:hover, .dropbtn:focus {
+  .dropbtninfo {
+    background-color: white;
+    border-radius: 6px;
+    color: black;
+    padding: 4px 0;
+    width: 80px;
+    font-size: 24px;
+    border: 1px solid darkslategrey;
+  }
+  .dropbtnlabs:hover, .dropbtnlabs:focus {
+    background-color: lightslategrey;
+  }
+  .dropbtninfo:hover, .dropbtninfo:focus {
     background-color: lightslategrey;
   }
   .dropdown {
-    margin-right: 100px;
+    margin-right: 10px;
     margin-left: auto;
   }
-  .dropdown-content {
+  .dropdown_sign {
+    margin-right: 50px;
+    margin-left: auto;
+  }
+  .dropdown-contentlabs {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -92,18 +108,59 @@
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
     z-index: 1;
   }
-  .dropdown-content a {
+  .dropdown-contentinfo {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 80px;
+    border-radius: 6px;
+    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+    z-index: 1;
+  }
+  .dropdown-contentlabs a {
     color: black;
     padding: 6px 12px;
     text-decoration: none;
     display: block;
   }
-  .dropdown-content a:hover {
+  .dropdown-contentinfo a {
+    color: black;
+    padding: 6px 12px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-contentlabs a:hover {
     background-color: #ddd
   }
-  .show {
+  .dropdown-contentinfo a:hover {
+    background-color: #ddd
+  }
+  .showlabs {
+    display:block;
+  }
+  .showinfo {
     display:block;
   }
   .CodeMirror {
     font-size: 20px;
   }
+  .sign_in_button{
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid black;
+    padding: 10px;
+    }
+    .right {
+      position: absolute;
+      left: 95%;
+    }
+    .right2 {
+      position: absolute;
+      left: 90%;
+    }
