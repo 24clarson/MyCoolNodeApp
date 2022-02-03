@@ -67,7 +67,7 @@
     height: 100%;
     border: none;
   }
-  .dropbtnlabs {
+  .drop-button-info, .drop-button-info, .drop-button-labs, .drop-button-labs {
     background-color: white;
     border-radius: 6px;
     color: black;
@@ -76,30 +76,10 @@
     font-size: 24px;
     border: 1px solid darkslategrey;
   }
-  .dropbtninfo {
-    background-color: white;
-    border-radius: 6px;
-    color: black;
-    padding: 4px 0;
-    width: 80px;
-    font-size: 24px;
-    border: 1px solid darkslategrey;
-  }
-  .dropbtnlabs:hover, .dropbtnlabs:focus {
+  .drop-button-labs:hover, .drop-button-labs:focus, .drop-button-info:hover, .drop-button-info:focus{
     background-color: lightslategrey;
   }
-  .dropbtninfo:hover, .dropbtninfo:focus {
-    background-color: lightslategrey;
-  }
-  .dropdown {
-    margin-right: 10px;
-    margin-left: auto;
-  }
-  .dropdown_sign {
-    margin-right: 50px;
-    margin-left: auto;
-  }
-  .dropdown-contentlabs {
+  .dropdown-contentlabs, .dropdown-contentinfo {
     display: none;
     position: absolute;
     background-color: #f1f1f1;
@@ -108,37 +88,16 @@
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
     z-index: 1;
   }
-  .dropdown-contentinfo {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 80px;
-    border-radius: 6px;
-    box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-    z-index: 1;
-  }
-  .dropdown-contentlabs a {
+  .dropdown-contentlabs a, .dropdown-contentinfo a {
     color: black;
     padding: 6px 12px;
     text-decoration: none;
     display: block;
   }
-  .dropdown-contentinfo a {
-    color: black;
-    padding: 6px 12px;
-    text-decoration: none;
-    display: block;
-  }
-  .dropdown-contentlabs a:hover {
+  .dropdown-contentlabs a:hover, .dropdown-contentinfo a:hover {
     background-color: #ddd
   }
-  .dropdown-contentinfo a:hover {
-    background-color: #ddd
-  }
-  .showlabs {
-    display:block;
-  }
-  .showinfo {
+  .show {
     display:block;
   }
   .CodeMirror {
