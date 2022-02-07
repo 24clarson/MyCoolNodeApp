@@ -30,7 +30,7 @@ app.listen(port,() => {
 var gmail = "24me@cpsd.us"
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = ConnectMongo;
 
 
 app.post('/score', (request, response) => {
