@@ -1,6 +1,7 @@
 const http = require('http');
 const port = process.env.PORT || 3000
 const express = require('express');
+var bodyParser = require('body-parser')
 const app = express();
 const path = require('path');
 const lessons = require("./lessons.js")
@@ -19,22 +20,44 @@ app.get('/paragraph.html', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    res.render('signIn.ejs')
+    res.render('sign_in.ejs')
 })
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/html');
-//   res.end('<h1>Hello World</h1>');
-// });
-
-// app.get('/', (req, res) => {
-//     res.render('signIn.ejs')
-// })
-
-// server.listen(port,() => {
-//   console.log(`Server running at port `+port);
-// });
 
 app.listen(port,() => {
     console.log(`Server running at port `+port);
-  });
+});
+
+var gmail = "24me@cpsd.us"
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+
+app.post('/score', (request, response) => {
+    console.log(request.body);
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+        dbo.collection("scores").find({email: gmail}).toArray(function(err, res) {
+            var userExists = false
+            if (res.length > 0) {
+                userExists = true;
+            }
+            if (userExists) {
+                var newValues = { $set: { score: request.body } };
+                dbo.collection("scores").updateOne({email: gmail}, newValues, function(err, res) {
+                    if (err) throw err;
+                    db.close();
+                });
+            }
+            if (!userExists) {
+                var myobj = {email: gmail, score: request.body};
+                dbo.collection("scores").insertOne(myobj, function(err, res) {
+                    if (err) throw err;
+                    db.close();
+                });
+            }
+        });    
+    });
+    response.end();
+});
