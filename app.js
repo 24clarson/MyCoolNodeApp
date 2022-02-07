@@ -30,7 +30,7 @@ app.listen(port,() => {
 var gmail = "24me@cpsd.us"
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "process.env.mongodb+srv://mango:MangoesAreGood@scores.nyroz.mongodb.net/scores?retryWrites=true&w=majority";
+var url = "mongodb+srv://mango:MangoesAreGood@Autograder.mongodb.net/scores?retryWrites=true&w=majority";
 
 
 app.post('/score', (request, response) => {
