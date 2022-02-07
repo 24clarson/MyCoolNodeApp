@@ -19,7 +19,7 @@ app.get('/paragraph.html', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    res.render('sign_in.ejs')
+    res.render('signIn.ejs')
 })
 // const server = http.createServer((req, res) => {
 //   res.statusCode = 200;
