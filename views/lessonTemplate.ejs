@@ -39,11 +39,8 @@
             <div class="feedback">
                 Objectives for this lab:
                 <ul>
-                    <% for (let instruction of htmlCriteria) { %>
-                        <li id=<%= instruction[0]%>><%= instruction[2]%></li>
-                    <% } %>
-                    <% for (let instruction of cssCriteria) { %>
-                        <li id=<%= instruction[0]%>><%= instruction[2]%></li>
+                    <% for (let instruction of criteria) { %>
+                    <li id=<%= instruction[0]%>><%= instruction[2]%></li>
                     <% } %>
                 </ul>
             </div>
@@ -65,29 +62,20 @@
                 mode: "css"
             })
             function showPreview() {
-                const htmlCode = htmlEditor.getValue();
-                const cssCode = "<style>" + cssEditor.getValue() + "</style>";
-                const frame = document.getElementById("preview-window").contentWindow.document;
+                var htmlCode = htmlEditor.getValue();
+                var cssCode = "<style>" + cssEditor.getValue() + "</style>";
+                var frame = document.getElementById("preview-window").contentWindow.document;
                 frame.open();
                 frame.write(htmlCode+cssCode);
                 frame.close();
             }
 
-            function checkAnswer(html, css) {
-                const htmlString = htmlEditor.getValue();
-                const cssString = cssEditor.getValue();
-                for (let i = 0; i < html.length; i++) {
-                    let grade = document.getElementById(html[i][0]);
-                    if (new RegExp(html[i][1]).test(htmlString)) {
-                        grade.style.color = 'green';
-                    }
-                    else {
-                        grade.style.color = 'red';
-                    }
-                }
-                for (let i = 0; i < css.length; i++) {
-                    let grade = document.getElementById(css[i][0]);
-                    if (new RegExp(css[i][1]).test(cssString)) {
+            function checkAnswer(requirements) {
+                var htmlString = htmlEditor.getValue();
+                var cssString = cssEditor.getValue();
+                for (let i = 0; i < requirements.length; i++) {
+                    grade = document.getElementById(requirements[i][0]);
+                    if (new RegExp(requirements[i][1]).test(htmlString)) {
                         grade.style.color = 'green';
                     }
                     else {
@@ -95,23 +83,36 @@
                     }
                 }
             }
-            const htmlArray = JSON.parse('<%- JSON.stringify(htmlCriteria) %>')
-            const cssArray = JSON.parse('<%- JSON.stringify(cssCriteria) %>')
+
+            function saveScore(score) {
+                options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: score
+                };
+                fetch('/score', options);
+            }
+
+            var goals = JSON.parse('<%- JSON.stringify(criteria) %>')
             //  console.log(criteria) 
             // let goals = [['grade1', /<h2>.*<\/h2>/], ['grade2', /<h3>.*<\/h3>/], ['grade3', /<h6>.*<\/h6>/]];
             // alert(goals)
+            alert(goals)
             // const goals = []
             // for (let i = 0; i < criteria.length; i++) {
             //     goals.push(criteria[i])
             // }
             // alert(goals)
             showPreview();
-            checkAnswer(htmlArray, cssArray);
+            checkAnswer(goals);
             htmlEditor.on("change",function(){showPreview()});
             cssEditor.on("change",function(){showPreview()});
-            htmlEditor.on("change",function(){checkAnswer(htmlArray, cssArray)});
-            cssEditor.on("change",function(){checkAnswer(htmlArray, cssArray)});
-
+            htmlEditor.on("change",function(){checkAnswer(goals)});
+            cssEditor.on("change",function(){checkAnswer(goals)});
+            htmlEditor.on("change",function(){saveScore('test123$')});
+            cssEditor.on("change",function(){saveScore('test123$')});
         </script>
     </div>
 </body>
