@@ -88,9 +88,9 @@
                 options = {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'text/plain'
+                        'Content-Type': 'application/json'
                     },
-                    body: score
+                    body: JSON.stringify({test: score})
                 };
                 fetch('/score', options);
             }
@@ -111,8 +111,8 @@
             cssEditor.on("change",function(){showPreview()});
             htmlEditor.on("change",function(){checkAnswer(goals)});
             cssEditor.on("change",function(){checkAnswer(goals)});
-            htmlEditor.on("change",function(){saveScore('test123$')});
-            cssEditor.on("change",function(){saveScore('test123$')});
+            htmlEditor.on("change",function(){saveScore("test123$")});
+            cssEditor.on("change",function(){saveScore("test123$")});
         </script>
     </div>
 </body>
