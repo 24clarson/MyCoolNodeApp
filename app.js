@@ -29,7 +29,7 @@ app.listen(port,() => {
 
 
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://mango:MangoesAreGood>@scores.nyroz.mongodb.net/mydb?retryWrites=true&w=majority";
+const uri = "mongodb+srv://mango:MangoesAreGood>@scores.nyroz.mongodb.net/scores?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(async err => {
   const collection = await client.db("mydb").collection("mycol");
@@ -37,8 +37,6 @@ client.connect(async err => {
   // perform actions on the collection object
   const doc = { name: "Neapolitan pizza", shape: "round" };
   const result = await collection.insertOne(doc);
-  
-
   console.log("document inserted")
   client.close();
 });
